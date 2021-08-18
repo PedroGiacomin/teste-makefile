@@ -5,13 +5,13 @@ program: main.o Circulo.o Cilindro.o Ponto.o
 main.o: main.cpp
 	g++ -c main.cpp
 
-Circulo.o: Circulo.h Circulo.cpp
+Circulo.o: Circulo.cpp Circulo.hpp
 	g++ -c Circulo.cpp
 
-Cilindro.o: Cilindro.h Cilindro.cpp
+Cilindro.o: Cilindro.cpp Cilindro.hpp
 	g++ -c Cilindro.cpp
 
-Ponto.o: Ponto.h Ponto.cpp
+Ponto.o: Ponto.cpp Ponto.hpp
 	g++ -c Ponto.cpp
 
 clean: 
