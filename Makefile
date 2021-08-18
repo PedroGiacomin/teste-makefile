@@ -1,18 +1,27 @@
 
-program: main.o Circulo.o Cilindro.o Ponto.o
-	g++ main.o Circulo.o Cilindro.o Ponto.o -o program
+TARGET=vpl_execution
 
-main.o: main.cpp
-	g++ -c main.cpp
+BUILD_DIR = ./build
+SRC_DIR = ./src
+INCLUDE_DIR = ./include
 
-Circulo.o: Circulo.cpp Circulo.hpp
-	g++ -c Circulo.cpp
+#Linkagem
+${TARGET}: ${BUILD_DIR}/main.o ${BUILD_DIR}/Circulo.o ${BUILD_DIR}/Cilindro.o ${BUILD_DIR}/Ponto.o
+	g++ ${BUILD_DIR}/*.o -o ${TARGET}
 
-Cilindro.o: Cilindro.cpp Cilindro.hpp
-	g++ -c Cilindro.cpp
+#Compilacao
+${BUILD_DIR}/main.o: main.cpp
+	g++ -c main.cpp -o ${BUILD_DIR}/main.o
 
-Ponto.o: Ponto.cpp Ponto.hpp
-	g++ -c Ponto.cpp
+${BUILD_DIR}/Circulo.o: Circulo.cpp Circulo.hpp
+	g++ -c Circulo.cpp -o ${BUILD_DIR}/Circulo.o
+
+${BUILD_DIR}/Cilindro.o: Cilindro.cpp Cilindro.hpp
+	g++ -c Cilindro.cpp -o ${BUILD_DIR}/Cilindro.o
+
+${BUILD_DIR}/Ponto.o: Ponto.cpp Ponto.hpp
+	g++ -c Ponto.cpp -o ${BUILD_DIR}/Ponto.o
+
 
 clean: 
-	rm *.o 
+	rm build/*.o ${TARGET}
