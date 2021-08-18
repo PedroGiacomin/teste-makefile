@@ -1,0 +1,21 @@
+CC=g++
+CCFLAGS=-std=c++11 -Wall
+
+BUILD_DIR =./build
+SRC_DIR = ./src
+INCLUDE_DIR = ./include
+
+${BUILD_DIR}/Cilindro.o : ${INCLUDE_DIR}/Cilindro.hpp ${SRC_DIR}/entidades/Cilindro.cpp
+	${CC} ${CCFLAGS} -c ${SRC_DIR}/entidades/Cilindro.cpp 
+
+${BUILD_DIR}/Circulo.o : ${INCLUDE_DIR}/Circulo.hpp ${SRC_DIR}/entidades/Circulo.cpp
+	${CC} ${CCFLAGS} -I ${INCLUDE_DIR}/entidades -c ${SRC_DIR}/entidades/Circulo.cpp -o ${BUILD_DIR}/Circulo.o
+
+${BUILD_DIR}/Ponto.o : ${INCLUDE_DIR}/Ponto.hpp ${SRC_DIR}/entidades/Ponto.cpp
+	${CC} ${CCFLAGS} -I ${INCLUDE_DIR}/entidades -c ${SRC_DIR}/entidades/Ponto.cpp -o ${BUILD_DIR}/Ponto.o
+
+${BUILD_DIR}/main.o : ${INCLUDE_DIR}/Cilindro.hpp ${INCLUDE_DIR}/Circulo.hpp ${INCLUDE_DIR}/Ponto.hpp ${SRC_DIR}/main.cpp
+	${CC} ${CCFLAGS} -I ${INCLUDE_DIR} -c ${SRC_DIR}/main.cpp -o ${BUILD_DIR}/main.o
+
+vpl_execution : ${BUILD_DIR}/Cilindro.o ${BUILD_DIR}/Circulo.o ${BUILD_DIR}/Ponto.o
+	${CC} ${CCFLAGS} vpl_execution -o ${BUILD_DIR}/*.o 
